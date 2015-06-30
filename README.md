@@ -1,0 +1,230 @@
+<p align="center">
+  <img src="https://github.com/delba/Tactile/blob/assets/master%402x.png" />
+</p>
+
+<p align="center">
+  <a href="https://github.com/Carthage/Carthage"><img alt="Carthage compatible" src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg"/></a>
+  <a href="https://github.com/delba/Tactile/releases"><img alt="GitHub release" src="https://img.shields.io/github/release/delba/Tactile.svg"/></a>
+</p>
+
+**Tactile** is a safer and more idiomatic way to respond to gestures and control events. It lets you catch bugs at compile time and write more expressive code.
+
+<p align="center">
+  <a href="#features">Features</a> • <a href="#usage">Usage</a> • <a href="#installation">Installation</a> • <a href="#license">License</a>
+</p>
+
+## Features
+
+- [x] Fully documented
+- [x] Compatible with Carthage
+
+## Usage
+
+**Tactile** extends both [`UIView`](https://github.com/delba/Tactile#uiview-extensions) and [`UIControl`](https://github.com/delba/Tactile#uicontrol-extensions) classes.
+
+### UIView extensions
+[`UIView+Tactile.swift`](https://github.com/delba/Tactile/blob/master/Source/UIView%2BTactile.swift)
+
+#### The `on` method
+
+Use the `on` method to add gesture recognizers.
+
+**`on(gesture:callback:)`**
+
+```swift
+let tap = UITapGestureRecognizer()
+tap.numberOfTapsRequired = 3
+tap.numberOfTouchesRequired = 2
+
+view.on(tap, tapped)
+
+// func tapped(tap: UITapGestureRecognizer)
+```
+
+**`on(gesture:state:callback:)`**
+
+```swift
+let pinch = UIPinchGestureRecognizer()
+
+view.on(pinch, .Began, pinchBegan)
+
+// func pinchBegan(pinch: UIPinchGestureRecognizer)
+```
+
+**`on(gesture:states:callback:)`**
+
+```swift
+let pan = UIPanGestureRecognizer()
+
+view.on(pan, [.Began, .Ended], panBeganOrEnded)
+
+// func panBeganOrEnded(pan: UIPanGestureRecognizer)
+```
+
+**`on(gesture:callbacks:)`**
+
+```swift
+let pinch = UIPinchGestureRecognizer()
+
+view.on(pinch, [
+  .Began: pinchBegan,
+  .Ended: pinchEnded
+])
+
+// func pinchBegan(pinch: UIPinchGestureRecognizer)
+// func pinchEnded(pinch: UIPinchGestureRecognizer)
+```
+
+#### The shorthand methods
+
+**Tactile** defines 6 shorthand methods: `longPress`, `pan`, `pinch`, `rotation`, `swipe` and `tap`.
+
+**`<shorthand>(callback:)`**
+
+```swift
+view.tap(tapped)
+
+// func tap(tap: UITapGestureRecognizer)
+```
+
+**`<shorthand>(state:callback:)`**
+
+```swift
+view.pinch(.Began, pinchBegan)
+
+// func pinch(pinch: UIPinchGestureRecognizer)
+```
+
+**`<shorthand>(states:callback:)`**
+
+```swift
+view.pan([.Began, .Ended], panBeganOrEnded)
+
+// func pan(pan: UIPanGestureRecognizer)
+```
+
+**`<shorthand>(callbacks:)`**
+
+```swift
+view.longPress([
+  .Began: longPressBegan,
+  .Ended: longPressEnded
+])
+
+// func longPressBegan(longPress: UILongPressGestureRecognizer)
+// func longPressEnded(longPress: UILongPressGestureRecognizer)
+```
+
+#### The `off` method
+
+Use the `off` method to remove gesture recognizers.
+
+**`off(gesture:)`**
+
+```swift
+let tap = UITapGestureRecognizer()
+view.on(tap, tapped)
+
+// ...
+
+view.off(tap)
+```
+
+**`off(gestureType:)`**
+
+```swift
+view.off(UITapGestureRecognizer.self)
+```
+
+**`off()`**
+
+```swift
+view.off()
+```
+
+#### Attaching a gesture recognizer to multiple views
+
+With Tactile, you can attach the same gesture recognizer to multiple views.
+
+```swift
+let tap = UITapGestureRecognizer()
+tap.numberOfTapsRequired = 3
+tap.numberOfTouchesRequired = 2
+
+firstView.on(tap, firstViewTapped)
+secondView.on(tap, secondViewTapped)
+```
+
+### UIControl extensions
+[`UIControl+Tactile.swift`](https://github.com/delba/Tactile/blob/master/Source/UIControl%2BTactile.swift)
+
+Use the `on` method to attach an event handler function for one or more control events.
+
+**on(event:callback:)**
+
+```swift
+button.on(.TouchUpInside, tapped)
+
+// func tapped(button: UIButton)
+```
+
+**on(events:callback:)**
+
+```swift
+button.on([.TouchUpInside, .TouchUpOutside], tapped)
+
+// func tapped(button: UIButton)
+```
+
+**on(callbacks:)**
+
+```swift
+button.on([
+  .TouchUpInside: tapped,
+  .TouchUpOutside: cancelledTap
+])
+
+// func tapped(button: UIButton)
+// func cancelledTap(button: UIButton)
+```
+
+## Installation
+
+[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that automates the process of adding frameworks to your Cocoa application.
+
+You can install Carthage with [Homebrew](http://brew.sh/) using the following command:
+
+```bash
+$ brew update
+$ brew install carthage
+```
+
+To integrate Alamofire into your Xcode project using Carthage, specify it in your `Cartfile`:
+
+```ogdl
+github "delba/Tactile" "swift-2.0"
+```
+
+## License
+
+The MIT License (MIT)
+
+Copyright (c) 2015 Damien D.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

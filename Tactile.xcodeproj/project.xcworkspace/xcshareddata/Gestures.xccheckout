@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>A095527D-42B4-4B6E-B380-5D1B13A33FF9</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Gestures</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>E561086E86EBFE73500FA8D0A1EA13B89F761AF1</key>
+		<string>https://github.com/delba/Gestures.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Gestures.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>E561086E86EBFE73500FA8D0A1EA13B89F761AF1</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/delba/Gestures.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>E561086E86EBFE73500FA8D0A1EA13B89F761AF1</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>E561086E86EBFE73500FA8D0A1EA13B89F761AF1</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Gestures</string>
+		</dict>
+	</array>
+</dict>
+</plist>
