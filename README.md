@@ -17,7 +17,7 @@ src="https://raw.githubusercontent.com/delba/Tactile/assets/master%402x.png?toke
 ## Features
 
 - [x] Fully documented
-- [x] Compatible with Carthage
+- [x] [Installation] through Carthage or CocoaPods
 - [x] Compatible with Swift 2 - [`swift-2.0`](https://github.com/delba/Tactile/tree/swift-2.0)
 
 ## Usage
@@ -192,6 +192,8 @@ button.on([
 
 ## Installation
 
+### Carthage
+
 [Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that automates the process of adding frameworks to your Cocoa application.
 
 You can install Carthage with [Homebrew](http://brew.sh/) using the following command:
@@ -205,6 +207,24 @@ To integrate Alamofire into your Xcode project using Carthage, specify it in you
 
 ```ogdl
 github "delba/Tactile" >= 0.1
+```
+
+### CocoaPods
+
+[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects.
+
+You can install it with the following command:
+
+```bash
+$ gem install cocoapods
+```
+
+To integrate JASON into your Xcode project using CocoaPods, specify it in your `Podfile`:
+
+```ruby
+use_frameworks!
+
+pod 'Tactile', '~> 0.1'
 ```
 
 ## License
