@@ -4,6 +4,7 @@ src="https://raw.githubusercontent.com/delba/Tactile/assets/master%402x.png?toke
 </p>
 
 <p align="center">
+    <a href="https://travis-ci.org/delba/Tactile"><img alt="Travis Status" src="https://img.shields.io/travis/delba/Tactile.svg"/></a>
   <a href="https://img.shields.io/cocoapods/v/Tactile.svg"><img alt="CocoaPods compatible" src="https://img.shields.io/cocoapods/v/Tactile.svg"/></a>
   <a href="https://github.com/Carthage/Carthage"><img alt="Carthage compatible" src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg"/></a>
 </p>
