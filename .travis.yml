@@ -1,0 +1,13 @@
+language: objective-c
+
+branches:
+  only:
+    - master
+
+xcode_project: Tactile.xcodeproj
+xcode_scheme: TactileTests
+osx_image: xcode6.4
+xcode_sdk: iphonesimulator8.4
+
+script:
+  - xcodebuild test -project Tactile.xcodeproj -scheme TactileTests
