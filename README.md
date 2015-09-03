@@ -3,8 +3,9 @@
 </p>
 
 <p align="center">
+  <a href="https://travis-ci.org/delba/Tactile"><img alt="Travis Status" src="https://img.shields.io/travis/delba/Tactile.svg"/></a>
+  <a href="https://img.shields.io/cocoapods/v/Tactile.svg"><img alt="CocoaPods compatible" src="https://img.shields.io/cocoapods/v/Tactile.svg"/></a>
   <a href="https://github.com/Carthage/Carthage"><img alt="Carthage compatible" src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg"/></a>
-  <a href="https://github.com/delba/Tactile/releases"><img alt="GitHub release" src="https://img.shields.io/github/release/delba/Tactile.svg"/></a>
 </p>
 
 **Tactile** is a safer and more idiomatic way to respond to gestures and control events. It lets you catch bugs at compile time and write more expressive code.
