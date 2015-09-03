@@ -190,6 +190,8 @@ button.on([
 
 ## Installation
 
+### Carthage
+
 [Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that automates the process of adding frameworks to your Cocoa application.
 
 You can install Carthage with [Homebrew](http://brew.sh/) using the following command:
@@ -203,6 +205,24 @@ To integrate Alamofire into your Xcode project using Carthage, specify it in you
 
 ```ogdl
 github "delba/Tactile" "swift-2.0"
+```
+
+### CocoaPods
+
+[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects.
+
+You can install it with the following command:
+
+```bash
+$ gem install cocoapods
+```
+
+To integrate JASON into your Xcode project using CocoaPods, specify it in your `Podfile`:
+
+```ruby
+use_frameworks!
+
+pod 'Tactile', :git => 'https://github.com/delba/Tactile.git', :branch => 'swift-2.0'
 ```
 
 ## License
