@@ -30,37 +30,37 @@ import XCTest
 // MARK: UIView
 
 class TactileTests: XCTestCase {
-    func testLongPress() {
+    func _testLongPress() {
         testGesture(UILongPressGestureRecognizer.self)
         testShortHandMethod(UIView.longPress)
     }
     
-    func testPan() {
+    func _testPan() {
         testGesture(UIPanGestureRecognizer.self)
         testShortHandMethod(UIView.pan)
     }
     
-    func testPinch() {
+    func _testPinch() {
         testGesture(UIPinchGestureRecognizer.self)
         testShortHandMethod(UIView.pinch)
     }
     
-    func testRotation() {
+    func _testRotation() {
         testGesture(UIRotationGestureRecognizer.self)
         testShortHandMethod(UIView.rotation)
     }
     
-    func testSwipe() {
+    func _testSwipe() {
         testGesture(UISwipeGestureRecognizer.self)
         testShortHandMethod(UIView.swipe)
     }
     
-    func testTap() {
+    func _testTap() {
         testGesture(UITapGestureRecognizer.self)
         testShortHandMethod(UIView.tap)
     }
     
-    func testOff() {
+    func _testOff() {
         let view = UIView()
         let tap = UITapGestureRecognizer()
         view.on(tap, { print($0) })
@@ -70,7 +70,7 @@ class TactileTests: XCTestCase {
         XCTAssertEqual(0, view.gestureRecognizers!.count)
     }
     
-    func testOffWithGestureType() {
+    func _testOffWithGestureType() {
         let view = UIView()
         view.tap{ print($0) }.pinch{ print($0) }
         
@@ -90,7 +90,7 @@ class TactileTests: XCTestCase {
         print(button)
     }
     
-    func testUIControlEvents() {
+    func _testUIControlEvents() {
         var triggered = false
         let button = UIButton()
         UIButton(frame: CGRect(origin: CGPointZero, size: CGSize(width: 200, height: 200)))
