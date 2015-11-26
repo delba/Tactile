@@ -205,7 +205,7 @@ $ brew install carthage
 To integrate Alamofire into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "delba/Tactile" "swift-2.0"
+github "delba/Tactile" >= 1.0
 ```
 
 ### CocoaPods
@@ -223,7 +223,7 @@ To integrate JASON into your Xcode project using CocoaPods, specify it in your `
 ```ruby
 use_frameworks!
 
-pod 'Tactile', :git => 'https://github.com/delba/Tactile.git', :branch => 'swift-2.0'
+pod 'Tactile', '~> 1.0'
 ```
 
 ## License
