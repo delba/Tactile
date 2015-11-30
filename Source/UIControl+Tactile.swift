@@ -113,7 +113,7 @@ private struct Actor<T: UIControl>: Triggerable {
 
 // MARK: Proxy
 
-private let proxies = NSMapTable.weakToStrongObjectsMapTable()
+private let proxies = NSMapTable.strongToWeakObjectsMapTable()
 
 private class Proxy: NSObject {
     var actor: Triggerable!
@@ -123,7 +123,7 @@ private class Proxy: NSObject {
         
         self.actor = actor
         
-        proxies.setObject(self, forKey: "\(control, event.rawValue)")
+        proxies.setObject(control, forKey: self)
     }
     
     @objc func recognized(control: UIControl) {
