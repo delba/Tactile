@@ -488,6 +488,15 @@ public extension UIView {
     }
 }
 
+private var key = "proxy"
+
+extension UIGestureRecognizer {
+    private var proxy: Proxy! {
+        get { return objc_getAssociatedObject(self, &key) as? Proxy }
+        set { objc_setAssociatedObject(self, &key, newValue, .OBJC_ASSOCIATION_RETAIN) }
+    }
+}
+
 // MARK: Actor
 
 private protocol Triggerable {
@@ -530,15 +539,13 @@ private struct Actor<T: UIGestureRecognizer>: Triggerable {
 
 // MARK: Proxy
 
-private let proxies = NSMapTable.weakToStrongObjectsMapTable()
-
 private class Proxy: NSObject {
     var actor: Triggerable!
     
     init(actor: Triggerable, gesture: UIGestureRecognizer) {
         super.init()
         self.actor = actor
-        proxies.setObject(self, forKey: gesture)
+        gesture.proxy = self
     }
     
     @objc func recognized(gesture: UIGestureRecognizer) {
@@ -549,7 +556,7 @@ private class Proxy: NSObject {
 // MARK: Internal functions
 
 func copyIfExists<T: UIGestureRecognizer>(a: T) -> T {
-    if proxies.objectForKey(a) == nil { return a }
+    if a.proxy == nil { return a }
     
     let b = T()
     

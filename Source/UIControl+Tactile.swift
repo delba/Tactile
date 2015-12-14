@@ -89,6 +89,15 @@ public extension TactileControl where Self: UIControl {
 
 extension UIControl: TactileControl {}
 
+private var key = "key"
+
+private extension UIControl {
+    var proxies: [UInt: Proxy] {
+        get { return objc_getAssociatedObject(self, &key) as? [UInt: Proxy] ?? [:] }
+        set { objc_setAssociatedObject(self, &key, newValue, .OBJC_ASSOCIATION_RETAIN) }
+    }
+}
+
 // MARK: Actor
 
 private protocol Triggerable {
@@ -113,8 +122,6 @@ private struct Actor<T: UIControl>: Triggerable {
 
 // MARK: Proxy
 
-private let proxies = NSMapTable.strongToWeakObjectsMapTable()
-
 private class Proxy: NSObject {
     var actor: Triggerable!
     
@@ -122,8 +129,7 @@ private class Proxy: NSObject {
         super.init()
         
         self.actor = actor
-        
-        proxies.setObject(control, forKey: self)
+        control.proxies[event.rawValue] = self
     }
     
     @objc func recognized(control: UIControl) {
