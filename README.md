@@ -85,7 +85,7 @@ view.on(pinch, [
 ```swift
 view.tap(tapped)
 
-// func tap(tap: UITapGestureRecognizer)
+// func tapped(tap: UITapGestureRecognizer)
 ```
 
 **`<shorthand>(state:callback:)`**
@@ -93,7 +93,7 @@ view.tap(tapped)
 ```swift
 view.pinch(.Began, pinchBegan)
 
-// func pinch(pinch: UIPinchGestureRecognizer)
+// func pinchBegan(pinch: UIPinchGestureRecognizer)
 ```
 
 **`<shorthand>(states:callback:)`**
@@ -101,7 +101,7 @@ view.pinch(.Began, pinchBegan)
 ```swift
 view.pan([.Began, .Ended], panBeganOrEnded)
 
-// func pan(pan: UIPanGestureRecognizer)
+// func panBeganOrEnded(pan: UIPanGestureRecognizer)
 ```
 
 **`<shorthand>(callbacks:)`**
