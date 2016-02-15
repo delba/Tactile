@@ -202,7 +202,7 @@ $ brew update
 $ brew install carthage
 ```
 
-To integrate Alamofire into your Xcode project using Carthage, specify it in your `Cartfile`:
+To integrate Tactile into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
 github "delba/Tactile" >= 1.0
@@ -218,7 +218,7 @@ You can install it with the following command:
 $ gem install cocoapods
 ```
 
-To integrate JASON into your Xcode project using CocoaPods, specify it in your `Podfile`:
+To integrate Tactile into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
 use_frameworks!
