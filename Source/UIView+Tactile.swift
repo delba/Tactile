@@ -537,7 +537,7 @@ private protocol Triggerable {
     func trigger(gesture: UIGestureRecognizer)
 }
 
-private var key = "tactile_view_proxy"
+private var key = "tactile_proxy"
 
 extension UIGestureRecognizer {
     private var proxy: Proxy! {

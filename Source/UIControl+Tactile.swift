@@ -99,7 +99,7 @@ private struct Actor<T: UIControl>: Triggerable {
 
 // MARK: Proxy
 
-private var key = "tactile_control_proxy"
+private var key = "tactile_proxies"
 
 private extension UIControl {
     var proxies: [UInt: Proxy] {
