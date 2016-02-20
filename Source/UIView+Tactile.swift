@@ -172,6 +172,10 @@ public extension UIView {
 public extension UIView {
     typealias LongPressCallback = UILongPressGestureRecognizer -> Void
     
+    private var longPress: UILongPressGestureRecognizer {
+        return UILongPressGestureRecognizer()
+    }
+    
     /**
         Attaches an instance of UILongPressGestureRecognizer to the view for all its states.
     
@@ -180,7 +184,6 @@ public extension UIView {
         - returns: The view
     */
     func longPress(callback: LongPressCallback) -> Self {
-        let longPress = UILongPressGestureRecognizer()
         return on(longPress, callback)
     }
     
@@ -193,17 +196,14 @@ public extension UIView {
         - returns: The view
     */
     func longPress(state: UIGestureRecognizerState, _ callback: LongPressCallback) -> Self {
-        let longPress = UILongPressGestureRecognizer()
         return on(longPress, state, callback)
     }
     
     func longPress(states: [UIGestureRecognizerState], _ callback: LongPressCallback) -> Self {
-        let longPress = UILongPressGestureRecognizer()
         return on(longPress, states, callback)
     }
     
     func longPress(callbacks: [UIGestureRecognizerState: LongPressCallback]) -> Self {
-        let longPress = UILongPressGestureRecognizer()
         return on(longPress, callbacks)
     }
 }
@@ -213,6 +213,10 @@ public extension UIView {
 public extension UIView {
     typealias PanCallback = UIPanGestureRecognizer -> Void
     
+    private var pan: UIPanGestureRecognizer {
+        return UIPanGestureRecognizer()
+    }
+    
     /**
         Attaches an instance of UIPanGestureRecognizer to the view for all its states.
     
@@ -221,7 +225,6 @@ public extension UIView {
         - returns: The view
     */
     func pan(callback: PanCallback) -> Self {
-        let pan = UIPanGestureRecognizer()
         return on(pan, callback)
     }
     
@@ -234,7 +237,6 @@ public extension UIView {
         - returns: The view
     */
     func pan(state: UIGestureRecognizerState, _ callback: PanCallback) -> Self {
-        let pan = UIPanGestureRecognizer()
         return on(pan, state, callback)
     }
     
@@ -247,7 +249,6 @@ public extension UIView {
         - returns: The view
     */
     func pan(states: [UIGestureRecognizerState], _ callback: PanCallback) -> Self {
-        let pan = UIPanGestureRecognizer()
         return on(pan, states, callback)
     }
     
@@ -259,7 +260,6 @@ public extension UIView {
         - returns: The view
     */
     func pan(callbacks: [UIGestureRecognizerState: PanCallback]) -> Self {
-        let pan = UIPanGestureRecognizer()
         return on(pan, callbacks)
     }
 }
@@ -269,6 +269,10 @@ public extension UIView {
 public extension UIView {
     typealias PinchCallback = UIPinchGestureRecognizer -> Void
     
+    private var pinch: UIPinchGestureRecognizer {
+        return UIPinchGestureRecognizer()
+    }
+    
     /**
         Attaches an instance of UIPinchGestureRecognizer to the view for all its states.
     
@@ -277,7 +281,6 @@ public extension UIView {
         - returns: The view
     */
     func pinch(callback: PinchCallback) -> Self {
-        let pinch = UIPinchGestureRecognizer()
         return on(pinch, callback)
     }
     
@@ -290,7 +293,6 @@ public extension UIView {
         - returns: The view
     */
     func pinch(state: UIGestureRecognizerState, _ callback: PinchCallback) -> Self {
-        let pinch = UIPinchGestureRecognizer()
         return on(pinch, state, callback)
     }
     
@@ -303,7 +305,6 @@ public extension UIView {
         - returns: The view
     */
     func pinch(states: [UIGestureRecognizerState], _ callback: PinchCallback) -> Self {
-        let pinch = UIPinchGestureRecognizer()
         return on(pinch, states, callback)
     }
     
@@ -315,7 +316,6 @@ public extension UIView {
         - returns: The view
     */
     func pinch(callbacks: [UIGestureRecognizerState: PinchCallback]) -> Self {
-        let pinch = UIPinchGestureRecognizer()
         return on(pinch, callbacks)
     }
 }
@@ -325,6 +325,10 @@ public extension UIView {
 public extension UIView {
     typealias RotationCallback = UIRotationGestureRecognizer -> Void
     
+    private var rotation: UIRotationGestureRecognizer {
+        return UIRotationGestureRecognizer()
+    }
+    
     /**
         Attaches an instance of UIRotationGestureRecognizer to the view.
     
@@ -333,7 +337,6 @@ public extension UIView {
         - returns: The view
     */
     func rotation(callback: RotationCallback) -> Self {
-        let rotation = UIRotationGestureRecognizer()
         return on(rotation, callback)
     }
     
@@ -346,7 +349,6 @@ public extension UIView {
         - returns: The view
     */
     func rotation(state: UIGestureRecognizerState, _ callback: RotationCallback) -> Self {
-        let rotation = UIRotationGestureRecognizer()
         return on(rotation, state, callback)
     }
     
@@ -359,7 +361,6 @@ public extension UIView {
         - returns: The view
     */
     func rotation(states: [UIGestureRecognizerState], _ callback: RotationCallback) -> Self {
-        let rotation = UIRotationGestureRecognizer()
         return on(rotation, states, callback)
     }
     
@@ -371,7 +372,6 @@ public extension UIView {
         - returns: The view
     */
     func rotation(callbacks: [UIGestureRecognizerState: RotationCallback]) -> Self {
-        let rotation = UIRotationGestureRecognizer()
         return on(rotation, callbacks)
     }
 }
@@ -381,6 +381,10 @@ public extension UIView {
 public extension UIView {
     typealias SwipeCallback = UISwipeGestureRecognizer -> Void
     
+    private var swipe: UISwipeGestureRecognizer {
+        return UISwipeGestureRecognizer()
+    }
+    
     /**
         Attaches an instance of UISwipeGestureRecognizer to the view for all its states.
     
@@ -389,7 +393,6 @@ public extension UIView {
         - returns: The view
     */
     func swipe(callback: SwipeCallback) -> Self {
-        let swipe = UISwipeGestureRecognizer()
         return on(swipe, callback)
     }
     
@@ -402,7 +405,6 @@ public extension UIView {
         - returns: The view
     */
     func swipe(state: UIGestureRecognizerState, _ callback: SwipeCallback) -> Self {
-        let swipe = UISwipeGestureRecognizer()
         return on(swipe, state, callback)
     }
     
@@ -415,7 +417,6 @@ public extension UIView {
         - returns: The view
     */
     func swipe(states: [UIGestureRecognizerState], _ callback: SwipeCallback) -> Self {
-        let swipe = UISwipeGestureRecognizer()
         return on(swipe, states, callback)
     }
     
@@ -427,7 +428,6 @@ public extension UIView {
         - returns: The view
     */
     func swipe(callbacks: [UIGestureRecognizerState: SwipeCallback]) -> Self {
-        let swipe = UISwipeGestureRecognizer()
         return on(swipe, callbacks)
     }
 }
@@ -437,6 +437,10 @@ public extension UIView {
 public extension UIView {
     typealias TapCallback = UITapGestureRecognizer -> Void
     
+    private var tap: UITapGestureRecognizer {
+        return UITapGestureRecognizer()
+    }
+    
     /**
         Attaches an instance of UITapGestureRecognizer to the view for all its states.
     
@@ -445,7 +449,6 @@ public extension UIView {
         - returns: The view
     */
     func tap(callback: TapCallback) -> Self {
-        let tap = UITapGestureRecognizer()
         return on(tap, callback)
     }
     
@@ -458,7 +461,6 @@ public extension UIView {
         - returns: The view
     */
     func tap(state: UIGestureRecognizerState, _ callback: TapCallback) -> Self {
-        let tap = UITapGestureRecognizer()
         return on(tap, state, callback)
     }
     
@@ -471,7 +473,6 @@ public extension UIView {
         - returns: The view
     */
     func tap(states: [UIGestureRecognizerState], _ callback: TapCallback) -> Self {
-        let tap = UITapGestureRecognizer()
         return on(tap, states, callback)
     }
     
@@ -483,7 +484,6 @@ public extension UIView {
         - returns: The view
     */
     func tap(callbacks: [UIGestureRecognizerState: TapCallback]) -> Self {
-        let tap = UITapGestureRecognizer()
         return on(tap, callbacks)
     }
 }
