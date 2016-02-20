@@ -49,7 +49,7 @@ public extension TactileControl where Self: UIControl {
     func on(event: UIControlEvents, _ callback: Self -> Void) -> Self {
         let actor = Actor(control: self, event: event, callback: callback)
         
-        addTarget(actor.proxy, action: "recognized:", forControlEvents: event)
+        addTarget(actor.proxy, action: .recognized, forControlEvents: event)
         
         return self
     }
@@ -135,4 +135,10 @@ private class Proxy: NSObject {
     @objc func recognized(control: UIControl) {
         actor.trigger(control)
     }
+}
+
+// MARK: Selector extension
+
+private extension Selector {
+    static let recognized = Selector("recognized:")
 }

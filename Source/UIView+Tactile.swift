@@ -43,7 +43,7 @@ public extension UIView {
         
         let actor = Actor(gesture: gesture, callback: callback)
         
-        gesture.addTarget(actor.proxy, action: "recognized:")
+        gesture.addTarget(actor.proxy, action: .recognized)
         
         self.addGestureRecognizer(gesture)
         
@@ -66,7 +66,7 @@ public extension UIView {
         
         let actor = Actor(gesture: gesture, states: [state], callback: callback)
         
-        gesture.addTarget(actor.proxy, action: "recognized:")
+        gesture.addTarget(actor.proxy, action: .recognized)
         
         self.addGestureRecognizer(gesture)
         
@@ -89,7 +89,7 @@ public extension UIView {
         
         let actor = Actor(gesture: gesture, states: states, callback: callback)
         
-        gesture.addTarget(actor.proxy, action: "recognized:")
+        gesture.addTarget(actor.proxy, action: .recognized)
         
         self.addGestureRecognizer(gesture)
         
@@ -110,7 +110,7 @@ public extension UIView {
         
         let actor = Actor(gesture: gesture, callbacks: callbacks)
         
-        gesture.addTarget(actor.proxy, action: "recognized:")
+        gesture.addTarget(actor.proxy, action: .recognized)
         
         self.addGestureRecognizer(gesture)
         
@@ -551,6 +551,12 @@ private class Proxy: NSObject {
     @objc func recognized(gesture: UIGestureRecognizer) {
         actor.trigger(gesture: gesture)
     }
+}
+
+// MARK: Selector extension
+
+private extension Selector {
+    static let recognized = Selector("recognized:")
 }
 
 // MARK: Internal functions
