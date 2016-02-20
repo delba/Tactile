@@ -515,7 +515,7 @@ extension UIGestureRecognizer {
 // MARK: Actor
 
 private protocol Triggerable {
-    func trigger(gesture gesture: UIGestureRecognizer)
+    func trigger(gesture: UIGestureRecognizer)
 }
 
 private extension UIGestureRecognizerState {
@@ -545,7 +545,7 @@ private struct Actor<T: UIGestureRecognizer>: Triggerable {
         self.proxy = Proxy(actor: self, gesture: gesture)
     }
     
-    func trigger(gesture gesture: UIGestureRecognizer) {
+    func trigger(gesture: UIGestureRecognizer) {
         if let gesture = gesture as? T, callback = callbacks[gesture.state] {
             callback(gesture)
         }
@@ -564,7 +564,7 @@ private class Proxy: NSObject {
     }
     
     @objc func recognized(gesture: UIGestureRecognizer) {
-        actor.trigger(gesture: gesture)
+        actor.trigger(gesture)
     }
 }
 
