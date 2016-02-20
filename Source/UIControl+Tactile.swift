@@ -1,9 +1,7 @@
 //
 //  Tactile
 //
-// The MIT License (MIT)
-//
-// Copyright (c) 2015 Damien D.
+// Copyright (c) 2015 Damien (http://delba.io)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,14 +23,6 @@
 //
 
 import UIKit
-
-// MARK: Hashable
-
-extension UIControlEvents: Hashable {
-    public var hashValue: Int { return Int(rawValue) }
-}
-
-// MARK: TactileControl
 
 public extension Tactile where Self: UIControl {
     /**
@@ -85,15 +75,6 @@ public extension Tactile where Self: UIControl {
     }
 }
 
-private var key = "tactile_control_proxy"
-
-private extension UIControl {
-    var proxies: [UInt: Proxy] {
-        get { return objc_getAssociatedObject(self, &key) as? [UInt: Proxy] ?? [:] }
-        set { objc_setAssociatedObject(self, &key, newValue, .OBJC_ASSOCIATION_RETAIN) }
-    }
-}
-
 // MARK: Actor
 
 private protocol Triggerable {
@@ -118,6 +99,15 @@ private struct Actor<T: UIControl>: Triggerable {
 
 // MARK: Proxy
 
+private var key = "tactile_control_proxy"
+
+private extension UIControl {
+    var proxies: [UInt: Proxy] {
+        get { return objc_getAssociatedObject(self, &key) as? [UInt: Proxy] ?? [:] }
+        set { objc_setAssociatedObject(self, &key, newValue, .OBJC_ASSOCIATION_RETAIN) }
+    }
+}
+
 private class Proxy: NSObject {
     var actor: Triggerable!
     
@@ -131,10 +121,4 @@ private class Proxy: NSObject {
     @objc func recognized(control: UIControl) {
         actor.trigger(control)
     }
-}
-
-// MARK: Selector extension
-
-private extension Selector {
-    static let recognized = Selector("recognized:")
 }

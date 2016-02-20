@@ -27,3 +27,17 @@ import UIKit
 public protocol Tactile {}
 
 extension UIView: Tactile {}
+
+extension UIControlEvents: Hashable {
+    public var hashValue: Int { return Int(rawValue) }
+}
+
+internal extension Selector {
+    static let recognized = Selector("recognized:")
+}
+
+internal extension UIGestureRecognizerState {
+    static let all = [
+        Possible, Began, Changed, Ended, Cancelled, Failed
+    ]
+}

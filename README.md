@@ -11,13 +11,8 @@
 **Tactile** is a safer and more idiomatic way to respond to gestures and control events. It lets you catch bugs at compile time and write more expressive code.
 
 <p align="center">
-  <a href="#features">Features</a> • <a href="#usage">Usage</a> • <a href="#installation">Installation</a> • <a href="#license">License</a>
+  <a href="#usage">Usage</a> • <a href="#installation">Installation</a> • <a href="#license">License</a>
 </p>
-
-## Features
-
-- [x] Fully documented
-- [x] Compatible with Carthage
 
 ## Usage
 
@@ -228,9 +223,7 @@ pod 'Tactile', '~> 1.0'
 
 ## License
 
-The MIT License (MIT)
-
-Copyright (c) 2015 Damien D.
+Copyright (c) 2015 Damien (http://delba.io)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

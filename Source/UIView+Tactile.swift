@@ -1,9 +1,7 @@
 //
 //  Tactile
 //
-// The MIT License (MIT)
-//
-// Copyright (c) 2015 Damien D.
+// Copyright (c) 2015 Damien (http://delba.io)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -503,26 +501,7 @@ public extension Tactile where Self: UIView {
     }
 }
 
-private var key = "tactile_view_proxy"
-
-extension UIGestureRecognizer {
-    private var proxy: Proxy! {
-        get { return objc_getAssociatedObject(self, &key) as? Proxy }
-        set { objc_setAssociatedObject(self, &key, newValue, .OBJC_ASSOCIATION_RETAIN) }
-    }
-}
-
 // MARK: Actor
-
-private protocol Triggerable {
-    func trigger(gesture: UIGestureRecognizer)
-}
-
-private extension UIGestureRecognizerState {
-    static let all = [
-        Possible, Began, Changed, Ended, Cancelled, Failed
-    ]
-}
 
 private struct Actor<T: UIGestureRecognizer>: Triggerable {
     typealias State = UIGestureRecognizerState
@@ -554,6 +533,19 @@ private struct Actor<T: UIGestureRecognizer>: Triggerable {
 
 // MARK: Proxy
 
+private protocol Triggerable {
+    func trigger(gesture: UIGestureRecognizer)
+}
+
+private var key = "tactile_view_proxy"
+
+extension UIGestureRecognizer {
+    private var proxy: Proxy! {
+        get { return objc_getAssociatedObject(self, &key) as? Proxy }
+        set { objc_setAssociatedObject(self, &key, newValue, .OBJC_ASSOCIATION_RETAIN) }
+    }
+}
+
 private class Proxy: NSObject {
     var actor: Triggerable!
     
@@ -566,12 +558,6 @@ private class Proxy: NSObject {
     @objc func recognized(gesture: UIGestureRecognizer) {
         actor.trigger(gesture)
     }
-}
-
-// MARK: Selector extension
-
-private extension Selector {
-    static let recognized = Selector("recognized:")
 }
 
 // MARK: Internal functions
