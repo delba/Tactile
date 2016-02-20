@@ -89,7 +89,7 @@ public extension TactileControl where Self: UIControl {
 
 extension UIControl: TactileControl {}
 
-private var key = "key"
+private var key = "tactile_control_proxy"
 
 private extension UIControl {
     var proxies: [UInt: Proxy] {

@@ -488,7 +488,7 @@ public extension UIView {
     }
 }
 
-private var key = "proxy"
+private var key = "tactile_view_proxy"
 
 extension UIGestureRecognizer {
     private var proxy: Proxy! {
