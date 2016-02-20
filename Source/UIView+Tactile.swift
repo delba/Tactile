@@ -28,7 +28,7 @@ import UIKit
 
 // MARK: Add gesture recognizer
 
-public extension UIView {
+public extension Tactile where Self: UIView {
     /**
         Attaches a gesture recognizer to the view for all its states.
     
@@ -120,7 +120,7 @@ public extension UIView {
 
 // MARK: Remove gesture recognizer
 
-public extension UIView {
+public extension Tactile where Self: UIView {
     /**
         Detaches a gesture recognizer from the receiving view.
     
@@ -169,7 +169,7 @@ public extension UIView {
 
 // MARK: Long press shorthand methods
 
-public extension UIView {
+public extension Tactile where Self: UIView {
     typealias LongPressCallback = UILongPressGestureRecognizer -> Void
     
     private var longPress: UILongPressGestureRecognizer {
@@ -225,7 +225,7 @@ public extension UIView {
 
 // MARK: Pan shorthand methods
 
-public extension UIView {
+public extension Tactile where Self: UIView {
     typealias PanCallback = UIPanGestureRecognizer -> Void
     
     private var pan: UIPanGestureRecognizer {
@@ -281,7 +281,7 @@ public extension UIView {
 
 // MARK: Pinch shorthand methods
 
-public extension UIView {
+public extension Tactile where Self: UIView {
     typealias PinchCallback = UIPinchGestureRecognizer -> Void
     
     private var pinch: UIPinchGestureRecognizer {
@@ -337,7 +337,7 @@ public extension UIView {
 
 // MARK: Rotation shorthand methods
 
-public extension UIView {
+public extension Tactile where Self: UIView {
     typealias RotationCallback = UIRotationGestureRecognizer -> Void
     
     private var rotation: UIRotationGestureRecognizer {
@@ -393,7 +393,7 @@ public extension UIView {
 
 // MARK: Swipe shorthand methods
 
-public extension UIView {
+public extension Tactile where Self: UIView {
     typealias SwipeCallback = UISwipeGestureRecognizer -> Void
     
     private var swipe: UISwipeGestureRecognizer {
@@ -449,7 +449,7 @@ public extension UIView {
 
 // MARK: Tap shorthand methods
 
-public extension UIView {
+public extension Tactile where Self: UIView {
     typealias TapCallback = UITapGestureRecognizer -> Void
     
     private var tap: UITapGestureRecognizer {

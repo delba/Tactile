@@ -12,6 +12,8 @@
 		6D5DADEE1B4305110027CD33 /* TactileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5DADED1B4305110027CD33 /* TactileTests.swift */; };
 		6D5DADF81B43054B0027CD33 /* UIView+Tactile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5DADF71B43054B0027CD33 /* UIView+Tactile.swift */; };
 		6D5DADF91B43054B0027CD33 /* UIView+Tactile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5DADF71B43054B0027CD33 /* UIView+Tactile.swift */; };
+		6D5E30B51C79178D009DD931 /* Tactile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E30B41C79178D009DD931 /* Tactile.swift */; };
+		6D5E30B61C791865009DD931 /* Tactile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5E30B41C79178D009DD931 /* Tactile.swift */; };
 		6DD5AD431B4A8EFE009D3F9F /* UIControl+Tactile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD5AD421B4A8EFE009D3F9F /* UIControl+Tactile.swift */; };
 		6DD5AD441B4A9536009D3F9F /* UIControl+Tactile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD5AD421B4A8EFE009D3F9F /* UIControl+Tactile.swift */; };
 /* End PBXBuildFile section */
@@ -34,6 +36,7 @@
 		6D5DADEC1B4305110027CD33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6D5DADED1B4305110027CD33 /* TactileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TactileTests.swift; sourceTree = "<group>"; };
 		6D5DADF71B43054B0027CD33 /* UIView+Tactile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Tactile.swift"; sourceTree = "<group>"; };
+		6D5E30B41C79178D009DD931 /* Tactile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tactile.swift; sourceTree = "<group>"; };
 		6DD5AD421B4A8EFE009D3F9F /* UIControl+Tactile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIControl+Tactile.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -59,9 +62,9 @@
 		6D5DADD11B4305110027CD33 = {
 			isa = PBXGroup;
 			children = (
+				6D5DADDC1B4305110027CD33 /* Products */,
 				6D5DADDD1B4305110027CD33 /* Source */,
 				6D5DADEA1B4305110027CD33 /* Tests */,
-				6D5DADDC1B4305110027CD33 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,10 +80,11 @@
 		6D5DADDD1B4305110027CD33 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				6D5DADF71B43054B0027CD33 /* UIView+Tactile.swift */,
-				6DD5AD421B4A8EFE009D3F9F /* UIControl+Tactile.swift */,
-				6D5DADE01B4305110027CD33 /* Tactile.h */,
 				6D5DADDE1B4305110027CD33 /* Supporting Files */,
+				6D5DADE01B4305110027CD33 /* Tactile.h */,
+				6D5E30B41C79178D009DD931 /* Tactile.swift */,
+				6DD5AD421B4A8EFE009D3F9F /* UIControl+Tactile.swift */,
+				6D5DADF71B43054B0027CD33 /* UIView+Tactile.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -96,8 +100,8 @@
 		6D5DADEA1B4305110027CD33 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				6D5DADED1B4305110027CD33 /* TactileTests.swift */,
 				6D5DADEB1B4305110027CD33 /* Supporting Files */,
+				6D5DADED1B4305110027CD33 /* TactileTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -219,6 +223,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D5E30B51C79178D009DD931 /* Tactile.swift in Sources */,
 				6D5DADF81B43054B0027CD33 /* UIView+Tactile.swift in Sources */,
 				6DD5AD431B4A8EFE009D3F9F /* UIControl+Tactile.swift in Sources */,
 			);
@@ -230,6 +235,7 @@
 			files = (
 				6D5DADEE1B4305110027CD33 /* TactileTests.swift in Sources */,
 				6D5DADF91B43054B0027CD33 /* UIView+Tactile.swift in Sources */,
+				6D5E30B61C791865009DD931 /* Tactile.swift in Sources */,
 				6DD5AD441B4A9536009D3F9F /* UIControl+Tactile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

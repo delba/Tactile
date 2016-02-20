@@ -34,9 +34,7 @@ extension UIControlEvents: Hashable {
 
 // MARK: TactileControl
 
-public protocol TactileControl {}
-
-public extension TactileControl where Self: UIControl {
+public extension Tactile where Self: UIControl {
     /**
         Attaches an event handler function for an event.
     
@@ -86,8 +84,6 @@ public extension TactileControl where Self: UIControl {
         return self
     }
 }
-
-extension UIControl: TactileControl {}
 
 private var key = "tactile_control_proxy"
 
