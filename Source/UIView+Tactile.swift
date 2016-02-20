@@ -199,10 +199,25 @@ public extension UIView {
         return on(longPress, state, callback)
     }
     
+    /**
+        Attaches an instance of UILongPressGestureRecognizer to the view for a multiple states.
+    
+        - parameter states: The state the gesture recognizer should be in
+        - parameter callback: A function to be invoked when the gesture occurs
+    
+        - returns: The view
+    */
     func longPress(states: [UIGestureRecognizerState], _ callback: LongPressCallback) -> Self {
         return on(longPress, states, callback)
     }
     
+    /**
+        Attaches an instance of UILongPressGestureRecognizer to the view and declares callbacks for its different states.
+    
+        - parameter callbacks: A dictionary with a state as the key and a callback as the value
+    
+        - returns: The view
+    */
     func longPress(callbacks: [UIGestureRecognizerState: LongPressCallback]) -> Self {
         return on(longPress, callbacks)
     }
