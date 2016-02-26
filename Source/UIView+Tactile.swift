@@ -503,6 +503,10 @@ public extension Tactile where Self: UIView {
 
 // MARK: Actor
 
+private protocol Triggerable {
+    func trigger(gesture: UIGestureRecognizer)
+}
+
 private struct Actor<T: UIGestureRecognizer>: Triggerable {
     typealias State = UIGestureRecognizerState
     typealias Callback = T -> Void
@@ -532,10 +536,6 @@ private struct Actor<T: UIGestureRecognizer>: Triggerable {
 }
 
 // MARK: Proxy
-
-private protocol Triggerable {
-    func trigger(gesture: UIGestureRecognizer)
-}
 
 private var key = "tactile_proxy"
 
