@@ -39,9 +39,7 @@ public extension Tactile where Self: UIView {
     func on<T: UIGestureRecognizer>(gesture: T, _ callback: T -> Void) -> Self {
         let actor = Actor(gesture: gesture, callback: callback)
         
-        gesture.addTarget(actor.proxy, action: .recognized)
-        
-        self.addGestureRecognizer(gesture)
+        addGestureRecognizer(actor, gesture)
         
         return self
     }
@@ -60,9 +58,7 @@ public extension Tactile where Self: UIView {
     func on<T: UIGestureRecognizer>(gesture: T, _ state: UIGestureRecognizerState, _ callback: T -> Void) -> Self {
         let actor = Actor(gesture: gesture, states: [state], callback: callback)
         
-        gesture.addTarget(actor.proxy, action: .recognized)
-        
-        self.addGestureRecognizer(gesture)
+        addGestureRecognizer(actor, gesture)
         
         return self
     }
@@ -81,9 +77,7 @@ public extension Tactile where Self: UIView {
     func on<T: UIGestureRecognizer>(gesture: T, _ states: [UIGestureRecognizerState], _ callback: T -> Void) -> Self {
         let actor = Actor(gesture: gesture, states: states, callback: callback)
         
-        gesture.addTarget(actor.proxy, action: .recognized)
-        
-        self.addGestureRecognizer(gesture)
+        addGestureRecognizer(actor, gesture)
         
         return self
     }
@@ -100,11 +94,14 @@ public extension Tactile where Self: UIView {
     func on<T: UIGestureRecognizer>(gesture: T, _ callbacks: [UIGestureRecognizerState: T -> Void]) -> Self {
         let actor = Actor(gesture: gesture, callbacks: callbacks)
         
-        gesture.addTarget(actor.proxy, action: .recognized)
-        
-        self.addGestureRecognizer(gesture)
+        addGestureRecognizer(actor, gesture)
         
         return self
+    }
+    
+    private func addGestureRecognizer<T: UIGestureRecognizer>(actor: Actor<T>, _ gesture: T) {
+        gesture.addTarget(actor.proxy, action: .recognized)
+        addGestureRecognizer(gesture)
     }
 }
 
