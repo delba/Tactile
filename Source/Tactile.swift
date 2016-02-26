@@ -41,3 +41,43 @@ internal extension UIGestureRecognizerState {
         Possible, Began, Changed, Ended, Cancelled, Failed
     ]
 }
+
+internal extension UIGestureRecognizer {
+    func clone() -> Self {
+        let clone = self.dynamicType.init()
+        
+        downcast(self, and: clone, to: UILongPressGestureRecognizer.self) { a, b in
+            b.numberOfTapsRequired    = a.numberOfTapsRequired
+            b.numberOfTouchesRequired = a.numberOfTouchesRequired
+            b.minimumPressDuration    = a.minimumPressDuration
+            b.allowableMovement       = a.allowableMovement
+        }
+        
+        downcast(self, and: clone, to: UIPanGestureRecognizer.self) { a, b in
+            b.maximumNumberOfTouches = a.maximumNumberOfTouches
+            b.minimumNumberOfTouches = a.minimumNumberOfTouches
+        }
+        
+        downcast(self, and: clone, to: UIScreenEdgePanGestureRecognizer.self) { a, b in
+            b.edges = a.edges
+        }
+        
+        downcast(self, and: clone, to: UISwipeGestureRecognizer.self) { a, b in
+            b.direction               = a.direction
+            b.numberOfTouchesRequired = a.numberOfTouchesRequired
+        }
+        
+        downcast(self, and: clone, to: UITapGestureRecognizer.self) { a, b in
+            b.numberOfTapsRequired    = a.numberOfTapsRequired
+            b.numberOfTouchesRequired = a.numberOfTouchesRequired
+        }
+        
+        return clone
+    }
+    
+    private func downcast<T, U>(a: T, and b: T, to: U.Type, block: (U, U) -> Void) {
+        if let a = a as? U, b = b as? U {
+            block(a, b)
+        }
+    }
+}

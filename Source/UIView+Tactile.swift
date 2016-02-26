@@ -37,7 +37,7 @@ public extension Tactile where Self: UIView {
         - returns: The view
     */
     func on<T: UIGestureRecognizer>(gesture: T, _ callback: T -> Void) -> Self {
-        let gesture = copyIfExists(gesture)
+        let gesture = gesture.proxy == nil ? gesture : gesture.clone()
         
         let actor = Actor(gesture: gesture, callback: callback)
         
@@ -60,7 +60,7 @@ public extension Tactile where Self: UIView {
         - returns: The view
     */
     func on<T: UIGestureRecognizer>(gesture: T, _ state: UIGestureRecognizerState, _ callback: T -> Void) -> Self {
-        let gesture = copyIfExists(gesture)
+        let gesture = gesture.proxy == nil ? gesture : gesture.clone()
         
         let actor = Actor(gesture: gesture, states: [state], callback: callback)
         
@@ -83,7 +83,7 @@ public extension Tactile where Self: UIView {
         - returns: The view
     */
     func on<T: UIGestureRecognizer>(gesture: T, _ states: [UIGestureRecognizerState], _ callback: T -> Void) -> Self {
-        let gesture = copyIfExists(gesture)
+        let gesture = gesture.proxy == nil ? gesture : gesture.clone()
         
         let actor = Actor(gesture: gesture, states: states, callback: callback)
         
@@ -104,7 +104,7 @@ public extension Tactile where Self: UIView {
         - returns: The view
     */
     func on<T: UIGestureRecognizer>(gesture: T, _ callbacks: [UIGestureRecognizerState: T -> Void]) -> Self {
-        let gesture = copyIfExists(gesture)
+        let gesture = gesture.proxy == nil ? gesture : gesture.clone()
         
         let actor = Actor(gesture: gesture, callbacks: callbacks)
         
@@ -557,47 +557,5 @@ private class Proxy: NSObject {
     
     @objc func recognized(gesture: UIGestureRecognizer) {
         actor.trigger(gesture)
-    }
-}
-
-// MARK: Internal functions
-
-func copyIfExists<T: UIGestureRecognizer>(a: T) -> T {
-    if a.proxy == nil { return a }
-    
-    let b = T()
-    
-    downcast(a, b: b, to: UILongPressGestureRecognizer.self) { a, b in
-        b.numberOfTapsRequired = a.numberOfTapsRequired
-        b.numberOfTouchesRequired = a.numberOfTouchesRequired
-        b.minimumPressDuration = a.minimumPressDuration
-        b.allowableMovement = a.allowableMovement
-    }
-    
-    downcast(a, b: b, to: UIPanGestureRecognizer.self) { a, b in
-        b.maximumNumberOfTouches = a.maximumNumberOfTouches
-        b.minimumNumberOfTouches = a.minimumNumberOfTouches
-    }
-    
-    downcast(a, b: b, to: UIScreenEdgePanGestureRecognizer.self) { a, b in
-        b.edges = a.edges
-    }
-    
-    downcast(a, b: b, to: UISwipeGestureRecognizer.self) { a, b in
-        b.direction = a.direction
-        b.numberOfTouchesRequired = a.numberOfTouchesRequired
-    }
-    
-    downcast(a, b: b, to: UITapGestureRecognizer.self) { a, b in
-        b.numberOfTapsRequired = a.numberOfTapsRequired
-        b.numberOfTouchesRequired = a.numberOfTouchesRequired
-    }
-    
-    return b
-}
-
-func downcast<T, U>(a: T, b: T, to: U.Type, block: (U, U) -> Void) {
-    if let a = a as? U, b = b as? U {
-        block(a, b)
     }
 }
