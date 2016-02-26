@@ -131,7 +131,7 @@ public extension Tactile where Self: UIView {
     func off<T: UIGestureRecognizer>(gestureType: T.Type) -> Self {
         guard let gestures = gestureRecognizers else { return self }
         
-        for gesture in gestures {
+        for gesture in gestures where gesture is T {
             removeGestureRecognizer(gesture)
         }
         
