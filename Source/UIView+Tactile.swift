@@ -37,8 +37,6 @@ public extension Tactile where Self: UIView {
         - returns: The view
     */
     func on<T: UIGestureRecognizer>(gesture: T, _ callback: T -> Void) -> Self {
-        let gesture = gesture.proxy == nil ? gesture : gesture.clone()
-        
         let actor = Actor(gesture: gesture, callback: callback)
         
         gesture.addTarget(actor.proxy, action: .recognized)
@@ -60,8 +58,6 @@ public extension Tactile where Self: UIView {
         - returns: The view
     */
     func on<T: UIGestureRecognizer>(gesture: T, _ state: UIGestureRecognizerState, _ callback: T -> Void) -> Self {
-        let gesture = gesture.proxy == nil ? gesture : gesture.clone()
-        
         let actor = Actor(gesture: gesture, states: [state], callback: callback)
         
         gesture.addTarget(actor.proxy, action: .recognized)
@@ -83,8 +79,6 @@ public extension Tactile where Self: UIView {
         - returns: The view
     */
     func on<T: UIGestureRecognizer>(gesture: T, _ states: [UIGestureRecognizerState], _ callback: T -> Void) -> Self {
-        let gesture = gesture.proxy == nil ? gesture : gesture.clone()
-        
         let actor = Actor(gesture: gesture, states: states, callback: callback)
         
         gesture.addTarget(actor.proxy, action: .recognized)
@@ -104,8 +98,6 @@ public extension Tactile where Self: UIView {
         - returns: The view
     */
     func on<T: UIGestureRecognizer>(gesture: T, _ callbacks: [UIGestureRecognizerState: T -> Void]) -> Self {
-        let gesture = gesture.proxy == nil ? gesture : gesture.clone()
-        
         let actor = Actor(gesture: gesture, callbacks: callbacks)
         
         gesture.addTarget(actor.proxy, action: .recognized)
@@ -516,6 +508,8 @@ private struct Actor<T: UIGestureRecognizer>: Triggerable {
     var proxy: Proxy!
 
     init(gesture: T, states: [State] = State.all, callback: Callback) {
+        let gesture = gesture.proxy == nil ? gesture : gesture.clone()
+        
         for state in states {
             self.callbacks[state] = callback
         }
@@ -524,6 +518,8 @@ private struct Actor<T: UIGestureRecognizer>: Triggerable {
     }
     
     init(gesture: T, callbacks: [State: Callback]) {
+        let gesture = gesture.proxy == nil ? gesture : gesture.clone()
+        
         self.callbacks = callbacks
         self.proxy = Proxy(actor: self, gesture: gesture)
     }
