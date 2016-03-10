@@ -10,6 +10,18 @@
 
 **Tactile** is a safer and more idiomatic way to respond to gestures and control events. It lets you catch bugs at compile time and write more expressive code.
 
+```swift
+view.swipe([
+    .Began:   swipeBegan,
+    .Changed: swipeChanged,
+    .Ended:   swipeEnded
+])
+
+// func swipeBegan(swipe: UISwipeGestureRecognizer)
+// func swipeChanged(swipe: UISwipeGestureRecognizer)
+// func swipeEnded(swipe: UISwipeGestureRecognizer)
+```
+
 <p align="center">
   <a href="#usage">Usage</a> • <a href="#installation">Installation</a> • <a href="#license">License</a>
 </p>
