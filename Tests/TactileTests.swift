@@ -90,8 +90,8 @@ class TactileTests: XCTestCase {
     
     func _testUIControlEvents() {
         var triggered = false
+        
         let button = UIButton()
-        UIButton(frame: CGRect(origin: CGPointZero, size: CGSize(width: 200, height: 200)))
         
         button.on(.TouchDown) { button in
             triggered = true
@@ -101,7 +101,7 @@ class TactileTests: XCTestCase {
         // button.sendActionsForControlEvents(.TouchDown)
         // println("done")
         
-        // XCTAssert(triggered)
+        XCTAssert(triggered)
     }
     
     private func testShortHandMethod<T: UIGestureRecognizer>(method: UIView -> (T -> Void) -> UIView) {
