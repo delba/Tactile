@@ -81,7 +81,6 @@
 			isa = PBXGroup;
 			children = (
 				6D5DADDE1B4305110027CD33 /* Supporting Files */,
-				6D5DADE01B4305110027CD33 /* Tactile.h */,
 				6D5E30B41C79178D009DD931 /* Tactile.swift */,
 				6DD5AD421B4A8EFE009D3F9F /* UIControl+Tactile.swift */,
 				6D5DADF71B43054B0027CD33 /* UIView+Tactile.swift */,
@@ -93,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				6D5DADDF1B4305110027CD33 /* Info.plist */,
+				6D5DADE01B4305110027CD33 /* Tactile.h */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
