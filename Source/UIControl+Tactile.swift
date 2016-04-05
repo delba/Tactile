@@ -122,3 +122,7 @@ private class Proxy: NSObject {
         actor.trigger(control)
     }
 }
+
+private extension Selector {
+    static let recognized = #selector(Proxy.recognized(_:))
+}

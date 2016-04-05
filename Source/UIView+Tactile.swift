@@ -24,6 +24,7 @@
 
 import UIKit
 
+
 // MARK: Add gesture recognizer
 
 public extension Tactile where Self: UIView {
@@ -551,4 +552,8 @@ private class Proxy: NSObject {
     @objc func recognized(gesture: UIGestureRecognizer) {
         actor.trigger(gesture)
     }
+}
+
+private extension Selector {
+    static let recognized = #selector(Proxy.recognized(_:))
 }
