@@ -22,8 +22,6 @@
 // SOFTWARE.
 //
 
-// MARK: Add gesture recognizer
-
 public extension Tactile where Self: UIView {
     /**
         Attaches a gesture recognizer to the view for all its states.
