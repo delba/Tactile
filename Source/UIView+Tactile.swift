@@ -22,9 +22,6 @@
 // SOFTWARE.
 //
 
-import UIKit
-
-
 // MARK: Add gesture recognizer
 
 public extension Tactile where Self: UIView {

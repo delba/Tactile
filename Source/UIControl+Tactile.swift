@@ -22,8 +22,6 @@
 // SOFTWARE.
 //
 
-import UIKit
-
 public extension Tactile where Self: UIControl {
     /**
         Attaches an event handler function for an event.

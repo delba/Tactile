@@ -22,8 +22,6 @@
 // SOFTWARE.
 //
 
-import UIKit
-
 public protocol Tactile {}
 
 extension UIView: Tactile {}
