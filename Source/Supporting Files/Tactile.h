@@ -22,14 +22,7 @@
 // SOFTWARE.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
-//! Project version number for Tactile.
 FOUNDATION_EXPORT double TactileVersionNumber;
-
-//! Project version string for Tactile.
 FOUNDATION_EXPORT const unsigned char TactileVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <Tactile/PublicHeader.h>
-
-
