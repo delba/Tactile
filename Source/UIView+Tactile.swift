@@ -526,7 +526,7 @@ private struct Actor<T: UIGestureRecognizer>: Triggerable {
 
 // MARK: Proxy
 
-private var key = "tactile_proxy"
+private var key = "io.delba.tactile.proxy"
 
 extension UIGestureRecognizer {
     private var proxy: Proxy! {

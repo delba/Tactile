@@ -97,7 +97,7 @@ private struct Actor<T: UIControl>: Triggerable {
 
 // MARK: Proxy
 
-private var key = "tactile_proxies"
+private var key = "io.delba.tactile.proxies"
 
 private extension UIControl {
     var proxies: [UInt: Proxy] {
