@@ -71,3 +71,10 @@ internal extension UIGestureRecognizer {
         }
     }
 }
+
+internal extension NSObject {
+    func synchronized(block: () -> Void) {
+        objc_sync_enter(self); defer { objc_sync_exit(self) }
+        block()
+    }
+}

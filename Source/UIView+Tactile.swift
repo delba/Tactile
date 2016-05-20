@@ -532,8 +532,21 @@ private var key = "io.delba.tactile.proxy"
 
 extension UIGestureRecognizer {
     private var proxy: Proxy? {
-        get { return objc_getAssociatedObject(self, &key) as? Proxy }
-        set { objc_setAssociatedObject(self, &key, newValue, .OBJC_ASSOCIATION_RETAIN) }
+        get {
+            var proxy: Proxy?
+            
+            synchronized {
+                proxy = objc_getAssociatedObject(self, &key) as? Proxy
+            }
+            
+            return proxy
+        }
+        
+        set {
+            synchronized {
+                objc_setAssociatedObject(self, &key, newValue, .OBJC_ASSOCIATION_RETAIN)
+            }
+        }
     }
 }
 

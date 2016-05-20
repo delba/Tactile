@@ -101,8 +101,23 @@ private var key = "io.delba.tactile.proxies"
 
 private extension UIControl {
     var proxies: [UInt: Proxy] {
-        get { return objc_getAssociatedObject(self, &key) as? [UInt: Proxy] ?? [:] }
-        set { objc_setAssociatedObject(self, &key, newValue, .OBJC_ASSOCIATION_RETAIN) }
+        get {
+            var proxies: [UInt: Proxy] = [:]
+            
+            synchronized {
+                if let lookup = objc_getAssociatedObject(self, &key) as? [UInt: Proxy] {
+                    proxies = lookup
+                }
+            }
+            
+            return proxies
+        }
+        
+        set {
+            synchronized {
+                objc_setAssociatedObject(self, &key, newValue, .OBJC_ASSOCIATION_RETAIN)
+            }
+        }
     }
 }
 
