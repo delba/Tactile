@@ -81,7 +81,7 @@ private protocol Triggerable {
 
 private struct Actor<T: UIControl>: Triggerable {
     let callback: T -> Void
-    var proxy: Proxy!
+    var proxy: Proxy?
     
     init(control: T, event: UIControlEvents, callback: T -> Void) {
         self.callback = callback
@@ -107,7 +107,7 @@ private extension UIControl {
 }
 
 private class Proxy: NSObject {
-    var actor: Triggerable!
+    var actor: Triggerable?
     
     init(actor: Triggerable, control: UIControl, event: UIControlEvents) {
         super.init()
@@ -117,7 +117,7 @@ private class Proxy: NSObject {
     }
     
     @objc func recognized(control: UIControl) {
-        actor.trigger(control)
+        actor?.trigger(control)
     }
 }
 

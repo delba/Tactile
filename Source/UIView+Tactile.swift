@@ -96,7 +96,9 @@ public extension Tactile where Self: UIView {
     }
     
     private func addGestureRecognizer<T: UIGestureRecognizer>(actor: Actor<T>, _ gesture: T) {
-        gesture.addTarget(actor.proxy, action: .recognized)
+        guard let proxy = actor.proxy else { return }
+        
+        gesture.addTarget(proxy, action: .recognized)
         addGestureRecognizer(gesture)
     }
 }
@@ -498,7 +500,7 @@ private struct Actor<T: UIGestureRecognizer>: Triggerable {
     
     var callbacks = [State: Callback]()
     
-    var proxy: Proxy!
+    var proxy: Proxy?
 
     init(gesture: T, states: [State] = State.all, callback: Callback) {
         let gesture = gesture.proxy == nil ? gesture : gesture.clone()
@@ -529,14 +531,14 @@ private struct Actor<T: UIGestureRecognizer>: Triggerable {
 private var key = "io.delba.tactile.proxy"
 
 extension UIGestureRecognizer {
-    private var proxy: Proxy! {
+    private var proxy: Proxy? {
         get { return objc_getAssociatedObject(self, &key) as? Proxy }
         set { objc_setAssociatedObject(self, &key, newValue, .OBJC_ASSOCIATION_RETAIN) }
     }
 }
 
 private class Proxy: NSObject {
-    var actor: Triggerable!
+    var actor: Triggerable?
     
     init(actor: Triggerable, gesture: UIGestureRecognizer) {
         super.init()
@@ -545,7 +547,7 @@ private class Proxy: NSObject {
     }
     
     @objc func recognized(gesture: UIGestureRecognizer) {
-        actor.trigger(gesture)
+        actor?.trigger(gesture)
     }
 }
 
