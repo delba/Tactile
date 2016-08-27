@@ -32,7 +32,8 @@ public extension Tactile where Self: UIView {
     
         - returns: The view
     */
-    func on<T: UIGestureRecognizer>(gesture: T, _ callback: T -> Void) -> Self {
+    @discardableResult
+    func on<T: UIGestureRecognizer>(_ gesture: T, _ callback: @escaping (T) -> Void) -> Self {
         let actor = Actor(gesture: gesture, callback: callback)
         
         addGestureRecognizer(actor, gesture)
@@ -51,7 +52,8 @@ public extension Tactile where Self: UIView {
     
         - returns: The view
     */
-    func on<T: UIGestureRecognizer>(gesture: T, _ state: UIGestureRecognizerState, _ callback: T -> Void) -> Self {
+    @discardableResult
+    func on<T: UIGestureRecognizer>(_ gesture: T, _ state: UIGestureRecognizerState, _ callback: @escaping (T) -> Void) -> Self {
         let actor = Actor(gesture: gesture, states: [state], callback: callback)
         
         addGestureRecognizer(actor, gesture)
@@ -70,7 +72,8 @@ public extension Tactile where Self: UIView {
     
         - returns: The view
     */
-    func on<T: UIGestureRecognizer>(gesture: T, _ states: [UIGestureRecognizerState], _ callback: T -> Void) -> Self {
+    @discardableResult
+    func on<T: UIGestureRecognizer>(_ gesture: T, _ states: [UIGestureRecognizerState], _ callback: @escaping (T) -> Void) -> Self {
         let actor = Actor(gesture: gesture, states: states, callback: callback)
         
         addGestureRecognizer(actor, gesture)
@@ -87,7 +90,8 @@ public extension Tactile where Self: UIView {
     
         - returns: The view
     */
-    func on<T: UIGestureRecognizer>(gesture: T, _ callbacks: [UIGestureRecognizerState: T -> Void]) -> Self {
+    @discardableResult
+    func on<T: UIGestureRecognizer>(_ gesture: T, _ callbacks: [UIGestureRecognizerState: (T) -> Void]) -> Self {
         let actor = Actor(gesture: gesture, callbacks: callbacks)
         
         addGestureRecognizer(actor, gesture)
@@ -95,7 +99,7 @@ public extension Tactile where Self: UIView {
         return self
     }
     
-    private func addGestureRecognizer<T: UIGestureRecognizer>(actor: Actor<T>, _ gesture: T) {
+    fileprivate func addGestureRecognizer<T: UIGestureRecognizer>(_ actor: Actor<T>, _ gesture: T) {
         guard let proxy = actor.proxy else { return }
         
         gesture.addTarget(proxy, action: .recognized)
@@ -113,7 +117,8 @@ public extension Tactile where Self: UIView {
     
         - returns: The view
     */
-    func off(gesture: UIGestureRecognizer) -> Self {
+    @discardableResult
+    func off(_ gesture: UIGestureRecognizer) -> Self {
         removeGestureRecognizer(gesture)
         
         return self
@@ -126,7 +131,8 @@ public extension Tactile where Self: UIView {
     
         - returns: The view
     */
-    func off<T: UIGestureRecognizer>(gestureType: T.Type) -> Self {
+    @discardableResult
+    func off<T: UIGestureRecognizer>(_ gestureType: T.Type) -> Self {
         guard let gestures = gestureRecognizers else { return self }
         
         for gesture in gestures where gesture is T {
@@ -141,6 +147,7 @@ public extension Tactile where Self: UIView {
     
         - returns: The view
     */
+    @discardableResult
     func off() -> Self {
         guard let gestures = gestureRecognizers else { return self }
         
@@ -155,9 +162,9 @@ public extension Tactile where Self: UIView {
 // MARK: Long press shorthand methods
 
 public extension Tactile where Self: UIView {
-    typealias LongPressCallback = UILongPressGestureRecognizer -> Void
+    typealias LongPressCallback = (UILongPressGestureRecognizer) -> Void
     
-    private var longPress: UILongPressGestureRecognizer {
+    fileprivate var longPress: UILongPressGestureRecognizer {
         return UILongPressGestureRecognizer()
     }
     
@@ -168,7 +175,8 @@ public extension Tactile where Self: UIView {
     
         - returns: The view
     */
-    func longPress(callback: LongPressCallback) -> Self {
+    @discardableResult
+    func longPress(_ callback: LongPressCallback) -> Self {
         return on(longPress, callback)
     }
     
@@ -180,7 +188,8 @@ public extension Tactile where Self: UIView {
     
         - returns: The view
     */
-    func longPress(state: UIGestureRecognizerState, _ callback: LongPressCallback) -> Self {
+    @discardableResult
+    func longPress(_ state: UIGestureRecognizerState, _ callback: LongPressCallback) -> Self {
         return on(longPress, state, callback)
     }
     
@@ -192,7 +201,8 @@ public extension Tactile where Self: UIView {
     
         - returns: The view
     */
-    func longPress(states: [UIGestureRecognizerState], _ callback: LongPressCallback) -> Self {
+    @discardableResult
+    func longPress(_ states: [UIGestureRecognizerState], _ callback: LongPressCallback) -> Self {
         return on(longPress, states, callback)
     }
     
@@ -203,7 +213,8 @@ public extension Tactile where Self: UIView {
     
         - returns: The view
     */
-    func longPress(callbacks: [UIGestureRecognizerState: LongPressCallback]) -> Self {
+    @discardableResult
+    func longPress(_ callbacks: [UIGestureRecognizerState: LongPressCallback]) -> Self {
         return on(longPress, callbacks)
     }
 }
@@ -211,9 +222,9 @@ public extension Tactile where Self: UIView {
 // MARK: Pan shorthand methods
 
 public extension Tactile where Self: UIView {
-    typealias PanCallback = UIPanGestureRecognizer -> Void
+    typealias PanCallback = (UIPanGestureRecognizer) -> Void
     
-    private var pan: UIPanGestureRecognizer {
+    fileprivate var pan: UIPanGestureRecognizer {
         return UIPanGestureRecognizer()
     }
     
@@ -224,7 +235,8 @@ public extension Tactile where Self: UIView {
     
         - returns: The view
     */
-    func pan(callback: PanCallback) -> Self {
+    @discardableResult
+    func pan(_ callback: PanCallback) -> Self {
         return on(pan, callback)
     }
     
@@ -236,7 +248,8 @@ public extension Tactile where Self: UIView {
     
         - returns: The view
     */
-    func pan(state: UIGestureRecognizerState, _ callback: PanCallback) -> Self {
+    @discardableResult
+    func pan(_ state: UIGestureRecognizerState, _ callback: PanCallback) -> Self {
         return on(pan, state, callback)
     }
     
@@ -248,7 +261,8 @@ public extension Tactile where Self: UIView {
     
         - returns: The view
     */
-    func pan(states: [UIGestureRecognizerState], _ callback: PanCallback) -> Self {
+    @discardableResult
+    func pan(_ states: [UIGestureRecognizerState], _ callback: PanCallback) -> Self {
         return on(pan, states, callback)
     }
     
@@ -259,7 +273,8 @@ public extension Tactile where Self: UIView {
     
         - returns: The view
     */
-    func pan(callbacks: [UIGestureRecognizerState: PanCallback]) -> Self {
+    @discardableResult
+    func pan(_ callbacks: [UIGestureRecognizerState: PanCallback]) -> Self {
         return on(pan, callbacks)
     }
 }
@@ -267,9 +282,9 @@ public extension Tactile where Self: UIView {
 // MARK: Pinch shorthand methods
 
 public extension Tactile where Self: UIView {
-    typealias PinchCallback = UIPinchGestureRecognizer -> Void
+    typealias PinchCallback = (UIPinchGestureRecognizer) -> Void
     
-    private var pinch: UIPinchGestureRecognizer {
+    fileprivate var pinch: UIPinchGestureRecognizer {
         return UIPinchGestureRecognizer()
     }
     
@@ -280,7 +295,8 @@ public extension Tactile where Self: UIView {
     
         - returns: The view
     */
-    func pinch(callback: PinchCallback) -> Self {
+    @discardableResult
+    func pinch(_ callback: PinchCallback) -> Self {
         return on(pinch, callback)
     }
     
@@ -292,7 +308,8 @@ public extension Tactile where Self: UIView {
     
         - returns: The view
     */
-    func pinch(state: UIGestureRecognizerState, _ callback: PinchCallback) -> Self {
+    @discardableResult
+    func pinch(_ state: UIGestureRecognizerState, _ callback: PinchCallback) -> Self {
         return on(pinch, state, callback)
     }
     
@@ -304,7 +321,8 @@ public extension Tactile where Self: UIView {
     
         - returns: The view
     */
-    func pinch(states: [UIGestureRecognizerState], _ callback: PinchCallback) -> Self {
+    @discardableResult
+    func pinch(_ states: [UIGestureRecognizerState], _ callback: PinchCallback) -> Self {
         return on(pinch, states, callback)
     }
     
@@ -315,7 +333,8 @@ public extension Tactile where Self: UIView {
     
         - returns: The view
     */
-    func pinch(callbacks: [UIGestureRecognizerState: PinchCallback]) -> Self {
+    @discardableResult
+    func pinch(_ callbacks: [UIGestureRecognizerState: PinchCallback]) -> Self {
         return on(pinch, callbacks)
     }
 }
@@ -323,9 +342,9 @@ public extension Tactile where Self: UIView {
 // MARK: Rotation shorthand methods
 
 public extension Tactile where Self: UIView {
-    typealias RotationCallback = UIRotationGestureRecognizer -> Void
+    typealias RotationCallback = (UIRotationGestureRecognizer) -> Void
     
-    private var rotation: UIRotationGestureRecognizer {
+    fileprivate var rotation: UIRotationGestureRecognizer {
         return UIRotationGestureRecognizer()
     }
     
@@ -336,7 +355,8 @@ public extension Tactile where Self: UIView {
     
         - returns: The view
     */
-    func rotation(callback: RotationCallback) -> Self {
+    @discardableResult
+    func rotation(_ callback: RotationCallback) -> Self {
         return on(rotation, callback)
     }
     
@@ -348,7 +368,8 @@ public extension Tactile where Self: UIView {
     
         - returns: The view
     */
-    func rotation(state: UIGestureRecognizerState, _ callback: RotationCallback) -> Self {
+    @discardableResult
+    func rotation(_ state: UIGestureRecognizerState, _ callback: RotationCallback) -> Self {
         return on(rotation, state, callback)
     }
     
@@ -360,7 +381,8 @@ public extension Tactile where Self: UIView {
     
         - returns: The view
     */
-    func rotation(states: [UIGestureRecognizerState], _ callback: RotationCallback) -> Self {
+    @discardableResult
+    func rotation(_ states: [UIGestureRecognizerState], _ callback: RotationCallback) -> Self {
         return on(rotation, states, callback)
     }
     
@@ -371,7 +393,8 @@ public extension Tactile where Self: UIView {
     
         - returns: The view
     */
-    func rotation(callbacks: [UIGestureRecognizerState: RotationCallback]) -> Self {
+    @discardableResult
+    func rotation(_ callbacks: [UIGestureRecognizerState: RotationCallback]) -> Self {
         return on(rotation, callbacks)
     }
 }
@@ -379,9 +402,9 @@ public extension Tactile where Self: UIView {
 // MARK: Swipe shorthand methods
 
 public extension Tactile where Self: UIView {
-    typealias SwipeCallback = UISwipeGestureRecognizer -> Void
+    typealias SwipeCallback = (UISwipeGestureRecognizer) -> Void
     
-    private var swipe: UISwipeGestureRecognizer {
+    fileprivate var swipe: UISwipeGestureRecognizer {
         return UISwipeGestureRecognizer()
     }
     
@@ -392,7 +415,8 @@ public extension Tactile where Self: UIView {
     
         - returns: The view
     */
-    func swipe(callback: SwipeCallback) -> Self {
+    @discardableResult
+    func swipe(_ callback: SwipeCallback) -> Self {
         return on(swipe, callback)
     }
     
@@ -404,7 +428,8 @@ public extension Tactile where Self: UIView {
     
         - returns: The view
     */
-    func swipe(state: UIGestureRecognizerState, _ callback: SwipeCallback) -> Self {
+    @discardableResult
+    func swipe(_ state: UIGestureRecognizerState, _ callback: SwipeCallback) -> Self {
         return on(swipe, state, callback)
     }
     
@@ -416,7 +441,8 @@ public extension Tactile where Self: UIView {
     
         - returns: The view
     */
-    func swipe(states: [UIGestureRecognizerState], _ callback: SwipeCallback) -> Self {
+    @discardableResult
+    func swipe(_ states: [UIGestureRecognizerState], _ callback: SwipeCallback) -> Self {
         return on(swipe, states, callback)
     }
     
@@ -427,7 +453,8 @@ public extension Tactile where Self: UIView {
     
         - returns: The view
     */
-    func swipe(callbacks: [UIGestureRecognizerState: SwipeCallback]) -> Self {
+    @discardableResult
+    func swipe(_ callbacks: [UIGestureRecognizerState: SwipeCallback]) -> Self {
         return on(swipe, callbacks)
     }
 }
@@ -435,9 +462,9 @@ public extension Tactile where Self: UIView {
 // MARK: Tap shorthand methods
 
 public extension Tactile where Self: UIView {
-    typealias TapCallback = UITapGestureRecognizer -> Void
+    typealias TapCallback = (UITapGestureRecognizer) -> Void
     
-    private var tap: UITapGestureRecognizer {
+    fileprivate var tap: UITapGestureRecognizer {
         return UITapGestureRecognizer()
     }
     
@@ -448,7 +475,8 @@ public extension Tactile where Self: UIView {
     
         - returns: The view
     */
-    func tap(callback: TapCallback) -> Self {
+    @discardableResult
+    func tap(_ callback: TapCallback) -> Self {
         return on(tap, callback)
     }
     
@@ -460,7 +488,8 @@ public extension Tactile where Self: UIView {
     
         - returns: The view
     */
-    func tap(state: UIGestureRecognizerState, _ callback: TapCallback) -> Self {
+    @discardableResult
+    func tap(_ state: UIGestureRecognizerState, _ callback: TapCallback) -> Self {
         return on(tap, state, callback)
     }
     
@@ -472,7 +501,8 @@ public extension Tactile where Self: UIView {
     
         - returns: The view
     */
-    func tap(states: [UIGestureRecognizerState], _ callback: TapCallback) -> Self {
+    @discardableResult
+    func tap(_ states: [UIGestureRecognizerState], _ callback: TapCallback) -> Self {
         return on(tap, states, callback)
     }
     
@@ -483,7 +513,8 @@ public extension Tactile where Self: UIView {
     
         - returns: The view
     */
-    func tap(callbacks: [UIGestureRecognizerState: TapCallback]) -> Self {
+    @discardableResult
+    func tap(_ callbacks: [UIGestureRecognizerState: TapCallback]) -> Self {
         return on(tap, callbacks)
     }
 }
@@ -491,14 +522,14 @@ public extension Tactile where Self: UIView {
 // MARK: Actor
 
 private protocol Triggerable {
-    func trigger(gesture: UIGestureRecognizer)
+    func trigger(_ gesture: UIGestureRecognizer)
 }
 
 private struct Actor<T: UIGestureRecognizer>: Triggerable {
     typealias State = UIGestureRecognizerState
-    typealias Callback = T -> Void
+    typealias Callback = (T) -> Void
     
-    var callbacks = [State: Callback]()
+    var callbacks: [State: Callback] = [:]
     
     var proxy: Proxy?
 
@@ -519,8 +550,8 @@ private struct Actor<T: UIGestureRecognizer>: Triggerable {
         self.proxy = Proxy(actor: self, gesture: gesture)
     }
     
-    func trigger(gesture: UIGestureRecognizer) {
-        if let gesture = gesture as? T, callback = callbacks[gesture.state] {
+    func trigger(_ gesture: UIGestureRecognizer) {
+        if let gesture = gesture as? T, let callback = callbacks[gesture.state] {
             callback(gesture)
         }
     }
@@ -531,7 +562,7 @@ private struct Actor<T: UIGestureRecognizer>: Triggerable {
 private var key = "io.delba.tactile.proxy"
 
 extension UIGestureRecognizer {
-    private var proxy: Proxy? {
+    fileprivate var proxy: Proxy? {
         get {
             var proxy: Proxy?
             
@@ -559,7 +590,7 @@ private class Proxy: NSObject {
         gesture.proxy = self
     }
     
-    @objc func recognized(gesture: UIGestureRecognizer) {
+    @objc func recognized(_ gesture: UIGestureRecognizer) {
         actor?.trigger(gesture)
     }
 }

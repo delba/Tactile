@@ -28,13 +28,13 @@ extension UIControlEvents: Hashable {
 
 internal extension UIGestureRecognizerState {
     static let all = [
-        Possible, Began, Changed, Ended, Cancelled, Failed
+        possible, began, changed, ended, cancelled, failed
     ]
 }
 
 internal extension UIGestureRecognizer {
     func clone() -> Self {
-        let clone = self.dynamicType.init()
+        let clone = type(of: self).init()
         
         downcast(self, and: clone, to: UILongPressGestureRecognizer.self) { a, b in
             b.numberOfTapsRequired    = a.numberOfTapsRequired
@@ -65,15 +65,15 @@ internal extension UIGestureRecognizer {
         return clone
     }
     
-    private func downcast<T, U>(a: T, and b: T, to: U.Type, block: (U, U) -> Void) {
-        if let a = a as? U, b = b as? U {
+    fileprivate func downcast<T, U>(_ a: T, and b: T, to: U.Type, block: (U, U) -> Void) {
+        if let a = a as? U, let b = b as? U {
             block(a, b)
         }
     }
 }
 
 internal extension NSObject {
-    func synchronized(block: () -> Void) {
+    func synchronized(_ block: () -> Void) {
         objc_sync_enter(self); defer { objc_sync_exit(self) }
         block()
     }
