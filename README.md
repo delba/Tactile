@@ -12,9 +12,9 @@
 
 ```swift
 view.pan([
-    .Began:   panBegan,
-    .Changed: panChanged,
-    .Ended:   panEnded
+    .began:   panBegan,
+    .changed: panChanged,
+    .ended:   panEnded
 ])
 
 // func panBegan(pan: UIPanGestureRecognizer)
@@ -54,7 +54,7 @@ view.on(tap, tapped)
 ```swift
 let pinch = UIPinchGestureRecognizer()
 
-view.on(pinch, .Began, pinchBegan)
+view.on(pinch, .began, pinchBegan)
 
 // func pinchBegan(pinch: UIPinchGestureRecognizer)
 ```
@@ -64,7 +64,7 @@ view.on(pinch, .Began, pinchBegan)
 ```swift
 let pan = UIPanGestureRecognizer()
 
-view.on(pan, [.Began, .Ended], panBeganOrEnded)
+view.on(pan, [.began, .ended], panBeganOrEnded)
 
 // func panBeganOrEnded(pan: UIPanGestureRecognizer)
 ```
@@ -75,8 +75,8 @@ view.on(pan, [.Began, .Ended], panBeganOrEnded)
 let pinch = UIPinchGestureRecognizer()
 
 view.on(pinch, [
-  .Began: pinchBegan,
-  .Ended: pinchEnded
+  .began: pinchBegan,
+  .ended: pinchEnded
 ])
 
 // func pinchBegan(pinch: UIPinchGestureRecognizer)
@@ -98,7 +98,7 @@ view.tap(tapped)
 **`<shorthand>(state:callback:)`**
 
 ```swift
-view.pinch(.Began, pinchBegan)
+view.pinch(.began, pinchBegan)
 
 // func pinchBegan(pinch: UIPinchGestureRecognizer)
 ```
@@ -106,7 +106,7 @@ view.pinch(.Began, pinchBegan)
 **`<shorthand>(states:callback:)`**
 
 ```swift
-view.pan([.Began, .Ended], panBeganOrEnded)
+view.pan([.began, .ended], panBeganOrEnded)
 
 // func panBeganOrEnded(pan: UIPanGestureRecognizer)
 ```
@@ -115,8 +115,8 @@ view.pan([.Began, .Ended], panBeganOrEnded)
 
 ```swift
 view.longPress([
-  .Began: longPressBegan,
-  .Ended: longPressEnded
+  .began: longPressBegan,
+  .ended: longPressEnded
 ])
 
 // func longPressBegan(longPress: UILongPressGestureRecognizer)
@@ -171,7 +171,7 @@ Use the `on` method to attach an event handler function for one or more control 
 **on(event:callback:)**
 
 ```swift
-button.on(.TouchUpInside, tapped)
+button.on(.touchUpInside, tapped)
 
 // func tapped(button: UIButton)
 ```
@@ -179,7 +179,7 @@ button.on(.TouchUpInside, tapped)
 **on(events:callback:)**
 
 ```swift
-button.on([.TouchUpInside, .TouchUpOutside], tapped)
+button.on([.touchUpInside, .touchUpOutside], tapped)
 
 // func tapped(button: UIButton)
 ```
@@ -188,8 +188,8 @@ button.on([.TouchUpInside, .TouchUpOutside], tapped)
 
 ```swift
 button.on([
-  .TouchUpInside: tapped,
-  .TouchUpOutside: cancelledTap
+  .touchUpInside: tapped,
+  .touchUpOutside: cancelledTap
 ])
 
 // func tapped(button: UIButton)
