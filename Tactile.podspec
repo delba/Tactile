@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = "8.0"
 
-  s.source_files = "Source/**/*"
+  s.source_files = "Source/**/*.{h,swift}"
 
   s.requires_arc = true
 end
