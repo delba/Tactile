@@ -35,36 +35,36 @@ internal extension UIGestureRecognizer.State {
 internal extension UIGestureRecognizer {
     func clone() -> Self {
         let clone = type(of: self).init()
-        
+
         downcast(self, and: clone, to: UILongPressGestureRecognizer.self) { a, b in
             b.numberOfTapsRequired    = a.numberOfTapsRequired
             b.numberOfTouchesRequired = a.numberOfTouchesRequired
             b.minimumPressDuration    = a.minimumPressDuration
             b.allowableMovement       = a.allowableMovement
         }
-        
+
         downcast(self, and: clone, to: UIPanGestureRecognizer.self) { a, b in
             b.maximumNumberOfTouches = a.maximumNumberOfTouches
             b.minimumNumberOfTouches = a.minimumNumberOfTouches
         }
-        
+
         downcast(self, and: clone, to: UIScreenEdgePanGestureRecognizer.self) { a, b in
             b.edges = a.edges
         }
-        
+
         downcast(self, and: clone, to: UISwipeGestureRecognizer.self) { a, b in
             b.direction               = a.direction
             b.numberOfTouchesRequired = a.numberOfTouchesRequired
         }
-        
+
         downcast(self, and: clone, to: UITapGestureRecognizer.self) { a, b in
             b.numberOfTapsRequired    = a.numberOfTapsRequired
             b.numberOfTouchesRequired = a.numberOfTouchesRequired
         }
-        
+
         return clone
     }
-    
+
     fileprivate func downcast<T, U>(_ a: T, and b: T, to: U.Type, block: (U, U) -> Void) {
         if let a = a as? U, let b = b as? U {
             block(a, b)
