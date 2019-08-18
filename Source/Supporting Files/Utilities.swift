@@ -22,11 +22,11 @@
 // SOFTWARE.
 //
 
-extension UIControlEvents: Hashable {
+extension UIControl.Event: Hashable {
     public var hashValue: Int { return Int(rawValue) }
 }
 
-internal extension UIGestureRecognizerState {
+internal extension UIGestureRecognizer.State {
     static let all = [
         possible, began, changed, ended, cancelled, failed
     ]

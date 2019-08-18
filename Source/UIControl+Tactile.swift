@@ -26,14 +26,14 @@ public extension Tactile where Self: UIControl {
     /**
         Attaches an event handler function for an event.
     
-        - parameter event: A UIControlEvents event
+        - parameter event: A UIControl event
         
         - parameter callback: The event handler function
         
         - returns: The control
     */
     @discardableResult
-    func on(_ event: UIControlEvents, _ callback: @escaping (Self) -> Void) -> Self {
+    func on(_ event: Event, _ callback: @escaping (Self) -> Void) -> Self {
         let actor = Actor(control: self, event: event, callback: callback)
         
         addTarget(actor.proxy, action: .recognized, for: event)
@@ -44,14 +44,14 @@ public extension Tactile where Self: UIControl {
     /**
         Attaches an event handler function for multiple events.
     
-        - parameter events: An array of UIControlEvents
+        - parameter events: An array of UIControl events
         
         - parameter callback: The event handler function
         
         - returns: The control
     */
     @discardableResult
-    func on(_ events: [UIControlEvents], _ callback: @escaping (Self) -> Void) -> Self {
+    func on(_ events: [Event], _ callback: @escaping (Self) -> Void) -> Self {
         for event in events {
             on(event, callback)
         }
@@ -62,12 +62,12 @@ public extension Tactile where Self: UIControl {
     /**
         Attaches event handler functions for different events.
         
-        - parameter callbacks: A dictionary with a UIControlEvents event as the key and an event handler function as the value
+        - parameter callbacks: A dictionary with a UIControl event as the key and an event handler function as the value
         
         - returns: The control
     */
     @discardableResult
-    func on(_ callbacks: [UIControlEvents: (Self) -> Void]) -> Self {
+    func on(_ callbacks: [Event: (Self) -> Void]) -> Self {
         for (event, callback) in callbacks {
             on(event, callback)
         }
@@ -86,7 +86,7 @@ private struct Actor<T: UIControl>: Triggerable {
     let callback: (T) -> Void
     var proxy: Proxy?
     
-    init(control: T, event: UIControlEvents, callback: @escaping (T) -> Void) {
+    init(control: T, event: UIControl.Event, callback: @escaping (T) -> Void) {
         self.callback = callback
         self.proxy = Proxy(actor: self, control: control, event: event)
     }
@@ -127,7 +127,7 @@ private extension UIControl {
 private class Proxy: NSObject {
     var actor: Triggerable?
     
-    init(actor: Triggerable, control: UIControl, event: UIControlEvents) {
+    init(actor: Triggerable, control: UIControl, event: UIControl.Event) {
         super.init()
         
         self.actor = actor
