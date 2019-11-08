@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name          = 'Tactile'
-  s.version       = '3.0'
+  s.version       = '3.0.1'
   s.license       = { :type => 'MIT' }
   s.homepage      = 'https://github.com/delba/Tactile'
   s.author        = { 'Damien' => 'damien@delba.io' }
@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '8.0'
 
-  s.source_files = 'Source/**/*'
+  s.source_files = 'Source/**/*.{swift,h}'
 
   s.requires_arc = true
 end
