@@ -22,6 +22,8 @@
 // SOFTWARE.
 //
 
+import UIKit
+
 extension UIControl.Event: Hashable {}
 
 internal extension UIGestureRecognizer.State {

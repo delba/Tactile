@@ -1,5 +1,6 @@
+// swift-tools-version:5.1
 //
-// Tactile.swift
+// Package.swift
 //
 // Copyright (c) 2015-2019 Damien (http://delba.io)
 //
@@ -22,8 +23,20 @@
 // SOFTWARE.
 //
 
-import UIKit
 
-public protocol Tactile {}
+import PackageDescription
 
-extension UIView: Tactile {}
+let package = Package(
+    name: "Tactile",
+    platforms: [.iOS(.v10)],
+    products: [
+        .library(
+            name: "Tactile",
+            targets: ["Tactile"]),
+    ],
+    targets: [
+        .target(
+            name: "Tactile",
+            path: "Source")
+    ]
+)

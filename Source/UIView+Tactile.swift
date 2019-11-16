@@ -22,6 +22,8 @@
 // SOFTWARE.
 //
 
+import UIKit
+
 public extension Tactile where Self: UIView {
     /**
         Attaches a gesture recognizer to the view for all its states.
